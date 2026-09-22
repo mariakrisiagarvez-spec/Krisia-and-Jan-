@@ -19,133 +19,82 @@
             --warning: #ED6C02;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            padding: 20px;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-dark); padding: 20px; }
 
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             padding: 20px;
             background-color: var(--card-bg);
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        header h1 {
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            margin-bottom: 5px;
+        header h1 { color: var(--primary-color); font-size: 2.2rem; margin-bottom: 5px; }
+        header p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 5px;
         }
 
-        header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-dark);
+            white-space: nowrap;
+            transition: all 0.2s ease;
         }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
 
         /* Stats Cards */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
         .stat-card {
             background: var(--card-bg);
-            padding: 20px;
+            padding: 18px;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.04);
             border-left: 5px solid var(--primary-color);
         }
 
-        .stat-card h3 {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .stat-card h3 { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; }
+        .stat-card .value { font-size: 1.6rem; font-weight: bold; color: var(--primary-color); margin-top: 5px; }
 
-        .stat-card .value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-top: 10px;
-        }
-
-        /* Table & Controls */
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .search-bar {
-            padding: 10px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            width: 300px;
-            font-size: 0.9rem;
-        }
-
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        .btn-danger {
-            background-color: #d32f2f;
-        }
-
+        /* Tables & Layout */
         .table-container {
             background: var(--card-bg);
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             overflow-x: auto;
+            margin-bottom: 20px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        th, td {
-            padding: 14px 18px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        th {
-            background-color: var(--primary-light);
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        tr:hover {
-            background-color: #FAF5F5;
-        }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
+        th, td { padding: 12px 16px; border-bottom: 1px solid var(--border-color); }
+        th { background-color: var(--primary-light); color: var(--primary-color); font-weight: 600; }
 
         .badge {
             padding: 4px 10px;
@@ -153,265 +102,214 @@
             font-size: 0.8rem;
             font-weight: 600;
         }
-
         .badge-done { background: #e8f5e9; color: var(--success); }
         .badge-pending { background: #fff3e0; color: var(--warning); }
 
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4);
-            justify-content: center;
-            align-items: center;
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
         }
 
-        .modal-content {
-            background: white;
-            padding: 25px;
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
             border-radius: 10px;
-            width: 400px;
-            max-width: 90%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
         }
+        .card h2 { color: var(--primary-color); font-size: 1.2rem; margin-bottom: 15px; }
 
-        .modal-content h2 {
-            margin-bottom: 15px;
-            color: var(--primary-color);
+        .timeline-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-color);
         }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-            color: var(--text-muted);
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-        }
-
-        .modal-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 15px;
-        }
+        .timeline-time { font-weight: bold; color: var(--primary-color); }
     </style>
 </head>
 <body>
 
     <header>
-        <h1><i class="fa-solid fa-rings-wedding"></i> Krisia & Jan Wedding Dashboard</h1>
-        <p>Requirements & Inventory Management System</p>
+        <h1><i class="fa-solid fa-heart"></i> Krisia & Jan Wedding Dashboard</h1>
+        <p>Complete Wedding Planner & Inventory</p>
     </header>
 
-    <div class="stats-grid">
-        <div class="stat-card">
-            <h3>Total Requirements</h3>
-            <div class="value" id="total-count">0</div>
+    <!-- Navigation Bar -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('requirements')"><i class="fa-solid fa-file-contract"></i> Legal Requirements</button>
+        <button class="tab-btn" onclick="switchTab('timeline')"><i class="fa-solid fa-calendar-check"></i> Timeline & Tasks</button>
+        <button class="tab-btn" onclick="switchTab('essentials')"><i class="fa-solid fa-list-check"></i> Day Essentials</button>
+        <button class="tab-btn" onclick="switchTab('guests')"><i class="fa-solid fa-users"></i> Guest List & RSVP</button>
+        <button class="tab-btn" onclick="switchTab('expenses')"><i class="fa-solid fa-receipt"></i> Expenses & Suppliers</button>
+        <button class="tab-btn" onclick="switchTab('program')"><i class="fa-solid fa-clock"></i> Program & Seating</button>
+    </div>
+
+    <!-- TAB 1: REQUIREMENTS -->
+    <div id="requirements" class="tab-content active">
+        <div class="stats-grid">
+            <div class="stat-card"><h3>Total Requirements</h3><div class="value">9</div></div>
+            <div class="stat-card"><h3>Completed</h3><div class="value">9</div></div>
+            <div class="stat-card"><h3>Total Requirements Cost</h3><div class="value">₱1,263.00</div></div>
         </div>
-        <div class="stat-card">
-            <h3>Completed Items</h3>
-            <div class="value" id="completed-count">0</div>
-        </div>
-        <div class="stat-card">
-            <h3>Total Estimated Cost</h3>
-            <div class="value" id="total-cost">₱0.00</div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Status</th><th>Description</th><th>Location</th><th>Validity</th><th>Price</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="badge badge-done">Done</span></td><td>PSA (Krisia)</td><td>PSA</td><td>No validity</td><td>₱230.00</td></tr>
+                    <tr><td><span class="badge badge-done">Done</span></td><td>PSA (Jan)</td><td>PSA</td><td>No validity</td><td>₱230.00</td></tr>
+                    <tr><td><span class="badge badge-done">Done</span></td><td>CENOMAR (Krisia)</td><td>PSA</td><td>6 months</td><td>₱285.00</td></tr>
+                    <tr><td><span class="badge badge-done">Done</span></td><td>CENOMAR (Jan)</td><td>PSA</td><td>6 months</td><td>₱285.00</td></tr>
+                    <tr><td><span class="badge badge-done">Done</span></td><td>VALID ID (Krisia)</td><td>-</td><td>No validity</td><td>₱0.00</td></tr>
+                    <tr><td><span class="badge badge-done">Done</span></td><td>VALID ID (Jan)</td><td>-</td><td>No validity</td><td>₱0.00</td></tr>
+                    <tr><td><span class="badge badge-done">Done</span></td><td>COMMUNITY TAX CERTIFICATE</td><td>Municipal CRO</td><td>No validity</td><td>₱33.00</td></tr>
+                    <tr><td><span class="badge badge-done">Done</span></td><td>SEMINAR CERTIFICATE</td><td>Municipal CRO</td><td>No validity</td><td>₱100.00</td></tr>
+                    <tr><td><span class="badge badge-done">Done</span></td><td>MARRIAGE LICENSE (Final)</td><td>Municipal CRO</td><td>4 Months</td><td>₱100.00</td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <div class="controls">
-        <input type="text" id="searchInput" class="search-bar" placeholder="Search item, location..." onkeyup="filterItems()">
-        <button class="btn" onclick="openModal()"><i class="fa-solid fa-plus"></i> Add Item</button>
+    <!-- TAB 2: TIMELINE & TASKS -->
+    <div id="timeline" class="tab-content">
+        <div class="card">
+            <h2>Preparation Progress</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Category</th><th>Task / Item</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Venue</td><td>Location (Ceremony & Reception)</td><td><span class="badge badge-done">Booked / Completed</span></td></tr>
+                        <tr><td>Catering</td><td>Food and Catering</td><td><span class="badge badge-done">Completed</span></td></tr>
+                        <tr><td>Essentials</td><td>Wedding Rings</td><td><span class="badge badge-done">Completed</span></td></tr>
+                        <tr><td>Attire</td><td>Bride & Groom Attire</td><td><span class="badge badge-done">Completed</span></td></tr>
+                        <tr><td>Coordinators</td><td>OTD Coordinator / Host</td><td><span class="badge badge-done">Completed</span></td></tr>
+                        <tr><td>Photo/Video</td><td>OTD Photographer</td><td><span class="badge badge-done">Completed</span></td></tr>
+                        <tr><td>Giveaways</td><td>Ninong & Ninang Giveaways</td><td><span class="badge badge-pending">To Be Completed</span></td></tr>
+                        <tr><td>Giveaways</td><td>Guest Giveaways</td><td><span class="badge badge-pending">To Be Completed</span></td></tr>
+                        <tr><td>Music</td><td>Wedding Singers - Angel & AJ</td><td><span class="badge badge-pending">To Be Completed</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Status</th>
-                    <th>Description</th>
-                    <th>Location</th>
-                    <th>Validity</th>
-                    <th>Price (₱)</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="inventory-body">
-                <!-- Rows render dynamically -->
-            </tbody>
-        </table>
+    <!-- TAB 3: DAY ESSENTIALS -->
+    <div id="essentials" class="tab-content">
+        <div class="grid-2">
+            <div class="card">
+                <h2>Bridal & Groom Essentials</h2>
+                <table>
+                    <tr><th>Item</th><th>Status</th></tr>
+                    <tr><td>Wedding Gown</td><td><span class="badge badge-done">Ready</span></td></tr>
+                    <tr><td>Wedding Shoes & Accessories</td><td><span class="badge badge-done">Ready</span></td></tr>
+                    <tr><td>Groom Suit & Shoes</td><td><span class="badge badge-done">Ready</span></td></tr>
+                </table>
+            </div>
+            <div class="card">
+                <h2>Ceremony & Reception Items</h2>
+                <table>
+                    <tr><th>Item</th><th>Status</th></tr>
+                    <tr><td>Wedding Ring & Ring Box</td><td><span class="badge badge-done">Ready</span></td></tr>
+                    <tr><td>Welcome Board & Seating Chart</td><td><span class="badge badge-done">Ready</span></td></tr>
+                    <tr><td>40 Pcs Packed Meals for Staff</td><td><span class="badge badge-pending">Pending Day-Of</span></td></tr>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <!-- Modal Form -->
-    <div class="modal" id="itemModal">
-        <div class="modal-content">
-            <h2 id="modalTitle">Add Item</h2>
-            <input type="hidden" id="editIndex">
-            <div class="form-group">
-                <label>Description</label>
-                <input type="text" id="itemDesc" required>
+    <!-- TAB 4: GUEST LIST & RSVP -->
+    <div id="guests" class="tab-content">
+        <div class="stats-grid">
+            <div class="stat-card"><h3>Total Guests Target</h3><div class="value">50</div></div>
+            <div class="stat-card"><h3>Confirmed Attendees</h3><div class="value">49</div></div>
+            <div class="stat-card"><h3>After Party Invited</h3><div class="value">30</div></div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Name</th><th>Invitation</th><th>RSVP Status</th><th>Attending?</th><th>Seats</th><th>After Party?</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Papa Manny Garvez</td><td>Sent</td><td>Completed</td><td>Yes</td><td>1</td><td>Yes</td></tr>
+                    <tr><td>Melody Garvez</td><td>Sent</td><td>Completed</td><td>Yes</td><td>1</td><td>Yes</td></tr>
+                    <tr><td>Melanie Garvez</td><td>Sent</td><td>Completed</td><td>Yes</td><td>1</td><td>Yes</td></tr>
+                    <tr><td>Harold</td><td>Sent</td><td>Completed</td><td>Yes</td><td>1</td><td>Yes</td></tr>
+                    <tr><td>AJ</td><td>Sent</td><td>Completed</td><td>Yes</td><td>1</td><td>Yes</td></tr>
+                    <tr><td>Angel</td><td>Sent</td><td>Completed</td><td>Yes</td><td>1</td><td>Yes</td></tr>
+                    <tr><td>Rommel Dasalla</td><td>Sent</td><td>Pending</td><td>No</td><td>1</td><td>Yes</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- TAB 5: EXPENSES & SUPPLIERS -->
+    <div id="expenses" class="tab-content">
+        <div class="stats-grid">
+            <div class="stat-card"><h3>Estimated Budget</h3><div class="value">₱137,350.00</div></div>
+            <div class="stat-card"><h3>Actual Total Spent</h3><div class="value">₱138,527.33</div></div>
+            <div class="stat-card"><h3>Remaining Balance</h3><div class="value">₱45,699.00</div></div>
+        </div>
+        <div class="grid-2">
+            <div class="card">
+                <h2>Key Suppliers</h2>
+                <table>
+                    <tr><th>Category</th><th>Supplier Name</th></tr>
+                    <tr><td>Catering</td><td>Angie's Catering and Services</td></tr>
+                    <tr><td>Venue</td><td>Pedy's Hall / D' East View Private Resort</td></tr>
+                    <tr><td>Coordinator</td><td>Karen Jocson</td></tr>
+                    <tr><td>Gown</td><td>Coutuba Fashion House</td></tr>
+                    <tr><td>Photographer</td><td>Galley Studios</td></tr>
+                    <tr><td>HMUA</td><td>Hair and Makeup by Jojie Ann</td></tr>
+                    <tr><td>Sounds & Lights</td><td>MBS Lights and Sounds</td></tr>
+                </table>
             </div>
-            <div class="form-group">
-                <label>Location</label>
-                <input type="text" id="itemLoc">
+            <div class="card">
+                <h2>Payment Breakdown</h2>
+                <table>
+                    <tr><th>Description</th><th>Actual Cost</th></tr>
+                    <tr><td>Wedding Ring</td><td>₱23,100.00</td></tr>
+                    <tr><td>Food Catering</td><td>₱28,900.00</td></tr>
+                    <tr><td>Venues</td><td>₱30,000.00</td></tr>
+                    <tr><td>Bride's Gown</td><td>₱7,000.00</td></tr>
+                    <tr><td>Photo Coverage</td><td>₱6,000.00</td></tr>
+                    <tr><td>Pastor Token</td><td>₱10,000.00</td></tr>
+                </table>
             </div>
-            <div class="form-group">
-                <label>Validity</label>
-                <input type="text" id="itemVal">
+        </div>
+    </div>
+
+    <!-- TAB 6: PROGRAM & SEATING -->
+    <div id="program" class="tab-content">
+        <div class="grid-2">
+            <div class="card">
+                <h2>Timeline Schedule (Introvert-Friendly)</h2>
+                <div class="timeline-item"><span class="timeline-time">1:30 PM</span> - Guest Arrival & Welcome Drinks</div>
+                <div class="timeline-item"><span class="timeline-time">2:00 PM</span> - Wedding Ceremony</div>
+                <div class="timeline-item"><span class="timeline-time">3:00 PM</span> - Group & Family Photo Session</div>
+                <div class="timeline-item"><span class="timeline-time">4:00 PM</span> - Simple Dinner & Mingle</div>
+                <div class="timeline-item"><span class="timeline-time">5:00 PM</span> - Thank You Toast & Send-off</div>
             </div>
-            <div class="form-group">
-                <label>Price (₱)</label>
-                <input type="number" id="itemPrice" value="0">
-            </div>
-            <div class="form-group">
-                <label>Status</label>
-                <select id="itemStatus">
-                    <option value="true">Completed</option>
-                    <option value="false">Pending</option>
-                </select>
-            </div>
-            <div class="modal-actions">
-                <button class="btn" style="background:#888;" onclick="closeModal()">Cancel</button>
-                <button class="btn" onclick="saveItem()">Save</button>
+            <div class="card">
+                <h2>Table Assignments</h2>
+                <p><strong>Table 1 (Parents & Godparents):</strong> Papa Manny, Mama, Ninang Nimfa, Ninong Larry, Ninang Roselyn, Ninong Darwin</p><br>
+                <p><strong>Table 2 (Bride's Table):</strong> Ate Melo, Ate Lanie, Kuya Vhon, Kuya Roel, Mark, Patrick, Cedrick, Ate Karen</p><br>
+                <p><strong>Table 3 (Groom's Table):</strong> Harold, AJ, Angel, Uncle Jeffrey, Ate Jenny, Mama Che</p><br>
+                <p><strong>Table 4 (Pastors & Church):</strong> Pastor Rene, Pastor Chito, Pastora Mercy, Kuya Moj, Ate Rachel, Hannah</p>
             </div>
         </div>
     </div>
 
     <script>
-        // Initial data loaded directly from your Google Sheet
-        const initialData = [
-            { completed: true, desc: "PSA (Krisia)", loc: "PSA", validity: "No validity", price: 230 },
-            { completed: true, desc: "PSA (Jan)", loc: "PSA", validity: "No validity", price: 230 },
-            { completed: true, desc: "CENOMAR (Krisia)", loc: "PSA", validity: "6 months", price: 285 },
-            { completed: true, desc: "CENOMAR (Jan)", loc: "PSA", validity: "6 months", price: 285 },
-            { completed: true, desc: "VALID ID (Krisia)", loc: "", validity: "No validity", price: 0 },
-            { completed: true, desc: "VALID ID (Jan)", loc: "", validity: "No validity", price: 0 },
-            { completed: true, desc: "COMMUNITY TAX CERTIFICATE", loc: "Municipal CRO", validity: "No validity", price: 33 },
-            { completed: true, desc: "SEMINAR CERTIFICATE", loc: "Municipal CRO", validity: "No validity", price: 100 },
-            { completed: true, desc: "MARRIAGE LICENSE (Final)", loc: "Municipal CRO", validity: "4 Months", price: 100 }
-        ];
-
-        let inventory = JSON.parse(localStorage.getItem('weddingInventory')) || initialData;
-
-        function renderTable() {
-            const tbody = document.getElementById('inventory-body');
-            tbody.innerHTML = '';
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             
-            let totalCost = 0;
-            let completedCount = 0;
-
-            inventory.forEach((item, index) => {
-                totalCost += Number(item.price || 0);
-                if (item.completed) completedCount++;
-
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>
-                        <span class="badge ${item.completed ? 'badge-done' : 'badge-pending'}" style="cursor:pointer;" onclick="toggleStatus(${index})">
-                            ${item.completed ? '<i class="fa-solid fa-check"></i> Done' : '<i class="fa-solid fa-clock"></i> Pending'}
-                        </span>
-                    </td>
-                    <td><strong>${item.desc}</strong></td>
-                    <td>${item.loc || '-'}</td>
-                    <td>${item.validity || '-'}</td>
-                    <td>₱${Number(item.price).toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
-                    <td>
-                        <button class="btn" style="padding:4px 8px; font-size:0.75rem;" onclick="editItem(${index})"><i class="fa-solid fa-pen"></i></button>
-                        <button class="btn btn-danger" style="padding:4px 8px; font-size:0.75rem;" onclick="deleteItem(${index})"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-
-            document.getElementById('total-count').innerText = inventory.length;
-            document.getElementById('completed-count').innerText = completedCount;
-            document.getElementById('total-cost').innerText = `₱${totalCost.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
-
-            localStorage.setItem('weddingInventory', JSON.stringify(inventory));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
         }
-
-        function toggleStatus(index) {
-            inventory[index].completed = !inventory[index].completed;
-            renderTable();
-        }
-
-        function openModal(edit = false) {
-            document.getElementById('itemModal').style.display = 'flex';
-            if(!edit) {
-                document.getElementById('modalTitle').innerText = "Add Item";
-                document.getElementById('editIndex').value = "";
-                document.getElementById('itemDesc').value = "";
-                document.getElementById('itemLoc').value = "";
-                document.getElementById('itemVal').value = "";
-                document.getElementById('itemPrice').value = 0;
-                document.getElementById('itemStatus').value = "false";
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('itemModal').style.display = 'none';
-        }
-
-        function saveItem() {
-            const index = document.getElementById('editIndex').value;
-            const newItem = {
-                desc: document.getElementById('itemDesc').value,
-                loc: document.getElementById('itemLoc').value,
-                validity: document.getElementById('itemVal').value,
-                price: parseFloat(document.getElementById('itemPrice').value) || 0,
-                completed: document.getElementById('itemStatus').value === "true"
-            };
-
-            if (index === "") {
-                inventory.push(newItem);
-            } else {
-                inventory[index] = newItem;
-            }
-
-            closeModal();
-            renderTable();
-        }
-
-        function editItem(index) {
-            const item = inventory[index];
-            document.getElementById('modalTitle').innerText = "Edit Item";
-            document.getElementById('editIndex').value = index;
-            document.getElementById('itemDesc').value = item.desc;
-            document.getElementById('itemLoc').value = item.loc;
-            document.getElementById('itemVal').value = item.validity;
-            document.getElementById('itemPrice').value = item.price;
-            document.getElementById('itemStatus').value = item.completed ? "true" : "false";
-            openModal(true);
-        }
-
-        function deleteItem(index) {
-            if (confirm("Are you sure you want to delete this item?")) {
-                inventory.splice(index, 1);
-                renderTable();
-            }
-        }
-
-        function filterItems() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const rows = document.querySelectorAll('#inventory-body tr');
-            rows.forEach(row => {
-                const text = row.innerText.toLowerCase();
-                row.style.display = text.includes(query) ? '' : 'none';
-            });
-        }
-
-        // Initialize on load
-        renderTable();
     </script>
 </body>
 </html>
